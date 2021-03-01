@@ -1,0 +1,29 @@
+{
+    "name": "parse\/sql",
+    "description": "一个用来解析binlog的到sql的包",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "guoshipeng",
+            "email": "2249875980@qq.com"
+        }
+    ],
+    "require": {
+        "symfony/event-dispatcher": "^5.2",
+        "krowinski/php-mysql-replication": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Parse\\Sql\\": "src"
+        }
+    },
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://mirrors.aliyun.com/composer/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~7"
+    }
+}
