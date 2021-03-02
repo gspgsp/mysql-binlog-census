@@ -9,7 +9,6 @@
         }
     ],
     "require": {
-        "symfony/event-dispatcher": "^5.2",
         "krowinski/php-mysql-replication": "^7.0"
     },
     "autoload": {
