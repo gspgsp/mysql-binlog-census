@@ -1,5 +1,5 @@
 {
-    "name": "parse\/sql",
+    "name": "census\/sql",
     "description": "一个用来解析binlog的到sql的包",
     "license": "MIT",
     "authors": [

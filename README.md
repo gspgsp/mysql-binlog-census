@@ -6,7 +6,7 @@
 ## Installing
 
 ```shell
-$ composer require parse/sql -vvv
+$ composer require census/sql -vvv
 ```
 
 ## Usage
