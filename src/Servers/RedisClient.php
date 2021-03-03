@@ -13,18 +13,16 @@ use Predis\Client;
 
 class RedisClient
 {
-    const USER_QUOTE = 'user:%s:quote';
+    const USER_QUOTE = 'user:quote:count';
     protected $redis;
     protected $redis_conf;
-    protected $user_id;
 
     public function __construct($config)
     {
-        $this->user_id = $config['user_id'];
         $this->redis_conf = $config['redis_conf'];
 
         $this->redis = new Client($this->redis_conf);
-        $this->redis->select(10);
+        //$this->redis->select(10);
     }
 
     /**
@@ -36,8 +34,6 @@ class RedisClient
      */
     public function incQuote()
     {
-        $key = sprintf(self::USER_QUOTE, $this->user_id);
-
-        return $this->redis->incr($key);
+        return $this->redis->incr(self::USER_QUOTE);
     }
 }

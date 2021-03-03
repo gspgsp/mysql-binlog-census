@@ -43,7 +43,7 @@ class EventWatcher extends EventSubscribers
     {
         //报价表
         if($data['tableMap']['table'] == 'q_quotes'){
-            if (isset($this->config['extra']) && isset($this->config['extra']['user_id'])) {
+            if (isset($this->config['extra'])) {
                 (new RedisClient($this->config['extra']))->incQuote();
             }
         }
