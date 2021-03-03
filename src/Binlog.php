@@ -6,10 +6,7 @@
  * Date: 2021/3/1
  * Time: 13:08
  */
-
 namespace Parse\Sql;
-
-include __DIR__ . '/../vendor/autoload.php';
 
 use MySQLReplication\Config\ConfigBuilder;
 use MySQLReplication\Event\DTO\EventDTO;
