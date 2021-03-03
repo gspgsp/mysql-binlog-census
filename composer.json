@@ -9,7 +9,8 @@
         }
     ],
     "require": {
-        "krowinski/php-mysql-replication": "^7.0"
+        "krowinski/php-mysql-replication": "^7.0",
+        "predis/predis": "^1.1"
     },
     "autoload": {
         "psr-4": {

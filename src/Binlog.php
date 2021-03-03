@@ -6,11 +6,10 @@
  * Date: 2021/3/1
  * Time: 13:08
  */
+
 namespace Parse\Sql;
 
 use MySQLReplication\Config\ConfigBuilder;
-use MySQLReplication\Event\DTO\EventDTO;
-use MySQLReplication\Event\EventSubscribers;
 use MySQLReplication\MySQLReplicationFactory;
 use Parse\Sql\Exceptions\InvalidArgumentException;
 use Parse\Sql\Exceptions\InvalidInstanceException;
@@ -20,6 +19,8 @@ class Binlog
     public $binlogStream;
 
     public $configBuilder;
+
+    public $config = [];
 
     public function __construct($config = [])
     {
@@ -46,9 +47,12 @@ class Binlog
             ->withPort($config['port'] ?? 3306)
             ->withSlaveId($config['slave_id'] ?? 100)
             ->withHeartbeatPeriod($config['heart_beat_period'] ?? 2)
+            ->withDatabasesOnly($config['database_name'] ?? [])
             ->build();
 
         $this->binlogStream = new MySQLReplicationFactory($this->configBuilder);
+
+        $this->config = $config;
     }
 
     public function watcher()
@@ -66,27 +70,6 @@ class Binlog
 
     public function subscribeEvent()
     {
-        return new class() extends EventSubscribers
-        {
-            public function allEvents(EventDTO $event): void
-            {
-                // all events got __toString() implementation
-//                echo $event;
-
-
-                // all events got JsonSerializable implementation
-//                echo json_encode($event, JSON_PRETTY_PRINT);
-
-                // 对update write delete 数据单独操作
-                $res = json_decode(json_encode($event), true);
-                if($res['type'] == 'update' || $res['type'] == 'write' || $res['type'] == 'delete'){
-                    var_dump($res['values']);
-                }
-
-
-
-//                echo 'Memory usage ' . round(memory_get_usage() / 1048576, 2) . ' MB' . PHP_EOL;
-            }
-        };
+        return (new EventWatcher())->setConfig($this->config);
     }
 }
