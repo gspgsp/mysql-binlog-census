@@ -23,7 +23,7 @@ class BinlogProvider extends ServiceProvider
         if (!file_exists(config_path('census.php'))) {
             $this->publishes([
                 __DIR__. '/census.php' => config_path('census.php'),
-            ], 'config');
+            ], 'census');
         }
     }
 
