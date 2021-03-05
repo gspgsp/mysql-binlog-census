@@ -6,7 +6,7 @@
  * Time: 16:17
  */
 
-namespace Parse\Sql\BinlogProvider;
+namespace Parse\Sql;
 
 use Illuminate\Support\ServiceProvider;
 
